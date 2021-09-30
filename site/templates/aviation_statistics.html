@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" />
+	<link href="{{ url_for('static', filename='aviation_statistics.css') }}"  rel="stylesheet" />
+	<title>Авиационная статистика</title>
+	{% block head %}{% endblock %}
+</head>
+<body>
+	<div class="main_container" style="height: unset;">
+		<div class="up_menu">
+			<div class="up_backgraund"></div>
+			<span class="t1"><a href="{{ url_for('main') }}" style="color: rgba(230,232,239,1);">Main</br>page</a></span>
+			<span class="t2"><a href="{{ url_for('about') }}" style="color: rgba(230,232,239,1);">About this</br>project</a></span>
+			<span class="t3"><a href="{{ url_for('interactive_map') }}" style="color: rgba(230,232,239,1);">Interactive</br>map</a></span>
+			<div class="line1"></div>
+			<div class="line2"></div>
+		</div>
+		<div class="about" style="height: unset;">
+			<span class="t5">Результат запроса:</span>
+			{% block body %}
+			{{json_obj|safe}}
+			{% endblock %}
+		</div>
+	</div>
+</body>
+</html>
