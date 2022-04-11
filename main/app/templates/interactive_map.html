@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Интерактивная карта выбросов самолетами CO2</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+		  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+		  crossorigin=""/>
+	<link href="{{ url_for('static', filename='map_style.css') }}"  rel="stylesheet"/>
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+		  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+		  crossorigin=""></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='heatmap.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='leaflet-heatmap.js')}}"></script>
+	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script> 
+	<script type="text/javascript" src="{{ url_for('static', filename='leaflet-heat.js')}}"></script>
+	<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" />
+	
+</head>
+<body>
+    <ul class="menu-main">
+      <li><a href="{{ url_for('main') }}">Main</br>page</a></li>
+      <li><a href="{{ url_for('about') }}">About</br>this project</a></li>
+      <li><a href="{{ url_for('test2') }}">Monthly</br>report</a></li>
+      <li><a href="{{ url_for('aviation_statistics') }}">Aviation</br>statistics</a></li>
+    </ul>  
+	<div id="mapid" style="width: 100%; height: 480px" ></div>
+	<pre id="latlng"></pre>
+
+	<div class="stv-radio-buttons-wrapper">
+		<input type="radio" checked id="drawHotLine" class="stv-radio-button" name="draw" value="0">
+		<label class = "radiol" for="drawHotLine">Линии</label><br>
+		<input type="radio" id="drawHeat" class="stv-radio-button" name="draw" value="2">
+		<label class = "radiol"  for="drawHeat">Тепл. 1</label><br>
+		<input type="radio" id="drawHeatMap" class="stv-radio-button" name="draw" value="3">
+		<label class = "radiol"  for="drawHeatMap">Тепл. 2</label>
+	</div>
+
+	<div>
+		<label>Фильтры:</label> 
+		<br>
+		<input type="radio" checked id="date" name="choice" value="0">
+		<label for="date">Выводить данные согласно выбранному времени?</label><br>
+		<input type="radio" id="air_and_date" name="choice" value="1">
+		<label for="air_and_date">Выводить данные согласно выбранным аэропортам/рейсам и времени?</label><br>
+		<input type="radio" id="air" name="choice" value="2">
+		<label for="air">Выводить данные только по выбранным аэропортам/рейсам?</label><br>
+	</div>
+
+	<div id="dates">
+		<label> Выбрать дату от</label>
+		<input type="date" id="date_air_start">
+		<label> до</label>
+		<input type="date" id="date_air_end">
+	</div>
+
+	<div id="airoports">		
+		<label>Выбрать рейсы от аэропорта:</label>
+		<select id="airports_from0" onchange="highlightInput()"></select>
+		<label>до</label>
+		<select id="airports_to0" ></select>
+	</div>
+
+	<div id="add_airoports">
+		<button id ="addair" type="button">Добавить новый рейс</button>
+		<br>
+		<button id ="getair" type="button">Получить данные</button>
+	</div>
+
+	<div id="add_rectangles">
+		<label>Выбрать область: </label>
+		<button id ="add_rec" type="button">Прямоугольник</button>
+		<button id ="rem_rec" type="button">Удалить прямоугольник</button>
+		<!--<button id ="test_" type="button">Test</button>-->
+	</div>
+
+	<button id ="getdata" type="button">Получить все данные</button>
+
+	
+	<!--<label id="emet0"> Тут label id = "emet0"</label>-->
+	<div id="stat_div">
+		<p id = "stat"> </p>
+		<div id = "stat_list" style="width:150px;height:150px;overflow:auto;">
+		</div>
+
+	</div>
+	<script type="text/javascript" src="{{ url_for('static', filename='start.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='script.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='wwapi.js')}}"></script>
+</body>
+</html>

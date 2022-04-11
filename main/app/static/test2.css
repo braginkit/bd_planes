@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
+body{
+  background-color: rgba(52,54,51,1);
+  margin: 0;
+  overflow-x: hidden;
+}
+.menu-main {
+  display: table;
+  width: 97.5%;
+  background: rgba(91,140,90,1);
+  margin: 0;
+}
+
+.menu-main ul{
+  display: table-row;
+  margin: 0;
+}
+.menu-main li {
+    text-align: center;
+    width: 25%;
+    display: table-cell;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-main a {
+  line-height: normal;
+  display: inline-block;
+    
+  text-decoration: none;
+  font-family: 'Comfortaa', sans-serif;
+  position: relative;
+  color: rgba(230,232,239,1);
+  font-weight: Bold;
+  font-size: 3.5vw;
+  text-align: center;
+}
+.menu-main a:hover {
+  text-decoration: underline;
+}
+
+.titleinfo {
+  color: rgba(240,189,106,1);
+  font-family: Comfortaa;
+  font-weight: Bold;
+  font-size: 3.5vw;
+  opacity: 1;
+  text-align: center;
+  padding: 1vw;
+}
+.nearestMonth{
+    color: rgba(240,189,106,1);
+    font-family: Comfortaa;
+    font-weight: Light;
+    font-size: 2vw;
+}
+.ChooseMonth{
+    color: rgba(240,189,106,1);
+    font-family: Comfortaa;
+    font-weight: Light;
+    font-size: 2vw;
+}
+#months1{
+  height: 2vw;
+  border: none;
+  overflow: hidden;
+}
+#months1::-moz-focus-inner {
+  border: 0;
+  font-size:1.5vw;
+}
+
+#months1 option{
+  font-size:1.5vw;
+}
+
+.review li {
+    text-align: left;
+    color: rgba(240,189,106,1);
+    font-family: Comfortaa;
+    font-weight: Light;
+    font-size: 2vw;
+}
+  button { 
+    border: none;
+    border-radius: 7px;
+    padding: 5px 5px;
+    background: rgba(240,189,106,1);
+    font-family: Comfortaa;
+    font-weight: Light;
+    font-size: 2vw;
+  }
+  button:hover { 
+    background: #ff6600;
+  } 
+.march  {
+ text-decoration: none;
+ color: black;
+ background: rgba(240,189,106,1);
+ font-family: Comfortaa;
+ font-weight: Light;
+ font-size: 2vw;
+ text-align: center;
+ width: 50%
+ }
+.march:hover  {
+ text-decoration: none;
+ }
+.test1 {
+    text-align: center;
+}
+
+
+ footer{
+  display: table;
+  width: 100%;
+  background: rgba(91,140,90,1);
+ }
+footer ul{
+  display: table-row;
+  margin: 0;
+}
+footer li {
+    text-align: center;
+    width: 33%;
+    display: table-cell;
+    padding: 0;
+    margin: 0;
+    color: rgba(230,232,239,1);
+    font-size: 1vw;
+    font-family: Comfortaa;
+    font-weight: Regular;
+}

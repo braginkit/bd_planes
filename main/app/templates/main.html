@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='main_style.css') }}"  rel="stylesheet" />
+    <title>Главная</title>
+</head>
+<body>
+    <div class="main_container">
+        <ul class="menu-main">
+          <li><a href="{{ url_for('test2') }}">Monthly</br>report</a></li>
+          <li><a href="{{ url_for('about') }}">About</br>this project</a></li>
+          <li><a href="{{ url_for('interactive_map') }}">Interactive</br>map</a></li>
+          <li><a href="{{ url_for('aviation_statistics') }}">Aviation</br>statistics</a></li>
+        </ul> 
+        <div class="about">
+            <span class="t5">Проект №530</span>
+        </div>
+        <div class="interactive_map">
+            <span class="t6">Откройте интерактивную карту загрязнения атмосферы гражданской авиацией в Росии и не только. Там вы найдете филтры для поиска, авиакомпании, модели самолетов и многое другое!</span>
+            <div class="picture_sample1"></div>
+            <div class="button1_backgraund"></div>
+            <span class="t7">Карта</span>
+            <div class="arrow_A1"></div>
+            <span class="t8">Интерактивная карта</span>
+        </div>
+        <div class="statistics">
+            <span class="t9">Также, у вас есть бесплатный доступ к статистике и цифрам о загрязнении воздуха. Мы собрали в одном месте всю эту информацию с множества других сайтов, чтобы вы смогли ею воспользоваться</span>
+            <div class="picture_sample2"></div>
+            <div class="button2_backgraund"></div>
+            <span class="t10">Статистика</span>
+            <div class="arrow_B1"></div>
+            <span class="t11">Статистика</span>
+        </div>
+        <div class="down_menu">
+            <div class="v11_0"></div>
+            <span class="v11_5">Информация:</br></br>информация</br>информация</br>информация</span>
+            <span class="v11_4">Котакты:</br></br>project530@miem.hse.ru</br>+7 (999) 888-77-66</span>
+            <span class="v11_6">Команда разработки:</br></br>Прокофьева Екатерина<br>Некрасов Глеб<br>Брагин Никита<br>Беляков Семен<br>Поливода Денис<br>Мальцев Максим<br>Иванова Екатерина<br>Геворков Иван<br>Осипов Александр</span>
+            <div class="v11_8"></div>
+            <div class="v11_7"></div>
+        </div>
+    </div>
+</body>
+</html>

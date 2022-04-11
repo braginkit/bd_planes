@@ -1,0 +1,93 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.stv-radio-buttons-wrapper {
+  clear: both;
+  display: inline-block;
+  z-index: 100 !important;
+  position: fixed;
+  top: 110px;
+  right: 10px;
+}
+
+.stv-radio-button {
+  position: absolute;
+  left: -9999em;
+  top: -9999em;
+}
+
+input[type="radio"][name="draw"]:checked + label{
+  background-color: red;
+}
+
+.radiol {
+	width: 85px;
+    float: left;
+    padding: .5em 1em;
+    cursor: pointer;
+    border: 1px solid #28608f;
+    margin-right: -1px;
+    color: #fff;
+    background-color: #428bca;
+}
+
+#mapid { 
+  height: 100%; 
+  padding: 0; 
+  margin: 0; 
+  z-index: 1;
+}
+
+#latlng {
+  position: fixed;
+  top: 220px;
+  right: 10px;
+  z-index: 100 !important;
+}
+body{
+  margin: 0;
+  overflow-x: hidden;
+}
+.menu-main {
+  display: table;
+  width: 100%;
+  background: rgba(91,140,90,1);
+  margin: 0;
+}
+
+.menu-main ul{
+  display: table-row;
+  margin: 0;
+}
+.menu-main li {
+    text-align: center;
+    width: 25%;
+    display: table-cell;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-main a {
+  line-height: normal;
+  display: inline-block;
+    
+  text-decoration: none;
+  font-family: 'Comfortaa', sans-serif;
+  position: relative;
+  color: rgba(230,232,239,1);
+  font-weight: Bold;
+  font-size: 3.5vw;
+  text-align: center;
+}
+a:hover {
+  text-decoration: underline;
+}
