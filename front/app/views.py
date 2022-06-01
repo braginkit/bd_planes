@@ -15,7 +15,7 @@ from wtforms.validators import InputRequired, Length, NumberRange
 from flask_bootstrap import Bootstrap
 
 user="postgres"
-password="YUV45G"
+password="secret"
 host="80.249.150.39"
 port="5432"
 database="BD_Planes"
