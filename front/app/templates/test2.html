@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" />
+	<link href="{{ url_for('static', filename='test2.css') }}"  rel="stylesheet" />
+	<title>Ежемесячные отчёты</title>
+	{% block head %}{% endblock %}
+	<script>
+	function getCurrentMonth() {
+     var link = document.createElement("a");
+     link.setAttribute('download', "months");
+     var currentTime = new Date();
+     var month = currentTime.getMonth();
+     var year = currentTime.getFullYear();
+     if (month==0) {
+      month=11;
+      year=year-1;
+     }
+     link.href = "../static/main_images/ry" + year + "m" + month + ".pdf";
+     document.body.appendChild(link);
+     link.click();
+     link.remove();
+     }
+     
+    function viewCurrentMonth() {
+    var currentTime = new Date();
+    var month = currentTime.getMonth();
+    var year = currentTime.getFullYear();
+    if (month==0) {
+     month=11;
+     year=year-1;
+    }
+    var href = "../static/main_images/ry" + year + "m" + month + ".pdf";
+    window.open(href, '_blank').focus();
+    }
+     
+   function getDefineMonth() {
+    var araNumber = document.getElementById("months1");
+    var link = document.createElement("a");
+    link.setAttribute('download', araNumber.value);
+    link.href = "../static/main_images/"+araNumber.value+".pdf";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    }
+    
+    function viewDefineMonth(){
+    var araNumber = document.getElementById("months1");
+    var href ="../static/main_images/"+araNumber.value+".pdf";
+    window.open(href, '_blank').focus();
+    }
+    
+    function getSelectValues() {
+    var select = document.getElementById("months2")
+    var result = [];
+    var options = select && select.options;
+    var opt;
+
+      for (var i=0, iLen=options.length; i<iLen; i++) {
+        opt = options[i];
+    
+        if (opt.selected) {
+          result.push(opt.value || opt.text);
+          var link = document.createElement("a");
+          link.setAttribute('download', opt.value);
+          link.href = "../static/main_images/"+opt.value+".pdf";
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+    <ul class="menu-main">
+      <li><a href="{{ url_for('main') }}">Main</br>page</a></li>
+      <li><a href="{{ url_for('interactive_map') }}">Interactive</br>map</a></li>
+      <li><a href="{{ url_for('calculator') }}">CO2</br>calculator</a></li>
+      <li><a href="{{ url_for('test2') }}">Monthly</br>report</a></li>
+      <li><a href="{{ url_for('aviation_statistics') }}">Aviation</br>statistics</a></li>
+      <li><a href="{{ url_for('about') }}">About</br>this project</a></li>
+    </ul>   
+	<div class="titleinfo">В отчетах собрано огромное количество полезной информации:</div>
+	<ul class="review">
+    	<li>Общее количество выбросов за месяц</li>
+    	<li>Статистика по компаниям</li>
+    	<li>Ежедневная статистика по рейсам</li>
+    	<li>И многое, многое другое...</li>
+	</ul>
+	<div class="nearestMonth">
+    	<p> Отчет за последний месяц:
+    	<button type="button" name="run_script" onclick=getCurrentMonth()>Скачать</button>
+    	<button type="button" name="run_script" onclick=viewCurrentMonth()>Посмотреть</button>
+    	</p>
+	</div>
+    <div class="ChooseMonth">
+        <p>Выбрать отчет за определённый месяц:
+        <select class="choosemonth" name="months1" id="months1">
+          <option value="ry2022m3">Март 2022</option>
+          <option value="ry2022m4">Апрель 2022</option>
+        </select>
+        <button type="button" name="run_script2" onclick=getDefineMonth()>Скачать</button>
+        <button type="button" name="run_script2" onclick=viewDefineMonth()>Посмотреть</button>
+        </p>
+    </div>
+    <div class="ChooseMonth"> 
+        <p>Посмотреть отчёт за период:
+        <select class="choosemonthmultiple" name="months[]" multiple="multiple" id="months2" size="2">
+          <option value="ry2022m3">Март 2022</option>
+          <option value="ry2022m4">Апрель 2022</option>
+        </select>
+        <button type="button" name="run_script4" onclick=getSelectValues()>Скачать</button>
+        </p>
+    </div>
+    <footer>
+      <ul>
+          <li>Команда разработки:<br /><br />Прокофьева Екатерина<br />Некрасов Глеб<br />Поливода
+              Денис<br />Брагин Никита<br />Мальцев Максим<br />Осипов Александр<br />Геворков Иван<br />Беляков
+              Семен</li>
+          <div class="v33_18"></div>
+          <li>Котакты:</br></br>project530@miem.hse.ru</br>+7 (999) 888-77-66</li>
+          <div class="v33_19"></div>
+          <li>Обратная связь</br></br>Будем рады услышать предложения по улучшению сайта.<br />Наша почта:
+              project530@miem.hse.ru</li>
+      </ul>
+    </footer>
+</body>
+</html>

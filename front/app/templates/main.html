@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='main_style.css') }}" rel="stylesheet" />
+    <title>Главная</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="menu-main">
+            <li><a href="{{ url_for('main') }}">Main</br>page</a></li>
+            <li><a href="{{ url_for('interactive_map') }}">Interactive</br>map</a></li>
+            <li><a href="{{ url_for('calculator') }}">CO2</br>calculator</a></li>
+            <li><a href="{{ url_for('test2') }}">Monthly</br>report</a></li>
+            <li><a href="{{ url_for('aviation_statistics') }}">Aviation</br>statistics</a></li>
+            <li><a href="{{ url_for('about') }}">About</br>this project</a></li>
+        </ul>
+        <div class="main_container">
+            <div class="about">
+                <span class="t5">Проект №530</span>
+            </div>
+            <div class="interactive_map">
+                <div class="picture_sample1"></div>
+                <div class="map_text">
+                    <span class="t8">Интерактивная карта</span>
+                    <span class="t6">Откройте интерактивную карту загрязнения атмосферы гражданской авиацией в Росии и
+                        не только. Там вы найдете филтры для поиска, авиакомпании, модели самолетов и многое
+                        другое!</span>
+                    <div class="button_map">
+                        <div class="button1_backgraund">
+                            <span class="t7">Карта</span>
+                            <div class="arrow_A1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="statistics">
+                <div class="stat_class">
+                    <span class="t11">Статистика</span>
+                    <span class="t9">Также, у вас есть бесплатный доступ к статистике и цифрам о загрязнении воздуха. Мы
+                        собрали в одном месте всю эту информацию с множества других сайтов, чтобы вы смогли ею
+                        воспользоваться</span>
+                    <div class="button2_backgraund">
+                        <span class="t10">Статистика</span>
+                        <div class="arrow_B1"></div>
+                    </div>
+                </div>
+                <div class="picture_sample2"></div>
+            </div>
+        </div>
+        <footer>
+            <ul>
+                <li>Команда разработки:<br /><br />Прокофьева Екатерина<br />Некрасов Глеб<br />Поливода
+                    Денис<br />Брагин Никита<br />Мальцев Максим<br />Осипов Александр<br />Геворков Иван<br />Беляков
+                    Семен</li>
+                <div class="v33_18"></div>
+                <li>Котакты:</br></br>project530@miem.hse.ru</br>+7 (999) 888-77-66</li>
+                <div class="v33_19"></div>
+                <li>Обратная связь</br></br>Будем рады услышать предложения по улучшению сайта.<br />Наша почта:
+                    project530@miem.hse.ru</li>
+            </ul>
+        </footer>
+    </div>
+</body>
+
+</html>

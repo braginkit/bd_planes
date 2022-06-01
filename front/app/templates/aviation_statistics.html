@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" />
+	<link href="{{ url_for('static', filename='aviation_statistics.css') }}" rel="stylesheet" />
+	<title>Авиационная статистика</title>
+	{% block head %}{% endblock %}
+</head>
+
+<body>
+	<ul class="menu-main">
+        <li><a href="{{ url_for('main') }}">Main</br>page</a></li>
+        <li><a href="{{ url_for('interactive_map') }}">Interactive</br>map</a></li>
+        <li><a href="{{ url_for('calculator') }}">CO2</br>calculator</a></li>
+        <li><a href="{{ url_for('test2') }}">Monthly</br>report</a></li>
+        <li><a href="{{ url_for('aviation_statistics') }}">Aviation</br>statistics</a></li>
+        <li><a href="{{ url_for('about') }}">About</br>this project</a></li>
+	</ul>
+	<div class="wraper">
+		<p>Показать характеристики самолётов:</p>
+		<div class="buttons">
+			<form action="/aviation_statistics/" method="POST">
+				<!-- скрытый параметр -->
+				<input type="hidden" name="index" value="Airbus">
+				<input type="submit" class="btn btn-dark" value="Airbus">
+			</form>
+			<form action="/aviation_statistics/" method="POST">
+				<!-- скрытый параметр -->
+				<input type="hidden" name="index" value="Boeing">
+				<input type="submit" class="btn btn-dark" value="Boeing">
+			</form>
+			<form action="/aviation_statistics/" method="POST">
+				<!-- скрытый параметр -->
+				<input type="hidden" name="index" value="Антонов">
+				<input type="submit" class="btn btn-dark" value="Антонов">
+			</form>
+			<form action="/aviation_statistics/" method="POST">
+				<!-- скрытый параметр -->
+				<input type="hidden" name="index" value="Сухой">
+				<input type="submit" class="btn btn-dark" value="Сухой">
+			</form>
+			<form action="/aviation_statistics/" method="POST">
+				<!-- скрытый параметр -->
+				<input type="hidden" name="index" value="ALL">
+				<input type="submit" class="btn btn-dark" value="Все компании">
+			</form>
+		</div>
+		<p>Показать статистику по выбросам:</p>
+		<form action="/aviation_statistics/" method="POST">
+			<!-- скрытый параметр -->
+			<input type="hidden" name="index" value="Выбросы">
+			<input type="submit" class="btn btn-dark" value="Общая статистика">
+		</form>
+	</div>
+	<div class="about" style="height: unset;">
+		<span class="t5">Результат запроса:</span>
+		{% block body %}
+		{{json_obj|safe}}
+		{% endblock %}
+	</div>
+	</br></br>
+	<footer>
+		<ul>
+			<li>Команда разработки:<br /><br />Прокофьева Екатерина<br />Некрасов Глеб<br />Поливода
+				Денис<br />Брагин Никита<br />Мальцев Максим<br />Осипов Александр<br />Геворков Иван<br />Беляков
+				Семен</li>
+			<div class="v33_18"></div>
+			<li>Котакты:</br></br>project530@miem.hse.ru</br>+7 (999) 888-77-66</li>
+			<div class="v33_19"></div>
+			<li>Обратная связь</br></br>Будем рады услышать предложения по улучшению сайта.<br />Наша почта:
+				project530@miem.hse.ru</li>
+		</ul>
+	</footer>
+</body>
+
+</html>

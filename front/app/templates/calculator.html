@@ -1,0 +1,415 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{super()}}
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" />
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='calculator.css') }}">
+{% endblock %}
+
+{% block title %}
+Calculator
+{% endblock %}
+
+{% block content %}
+<div class="main_block">
+    <div class="wrapper">
+        <ul class="menu-main">
+            <li><a href="{{ url_for('main') }}">Main</br>page</a></li>
+            <li><a href="{{ url_for('interactive_map') }}">Interactive</br>map</a></li>
+            <li><a href="{{ url_for('calculator') }}">CO2</br>calculator</a></li>
+            <li><a href="{{ url_for('test2') }}">Monthly</br>report</a></li>
+            <li><a href="{{ url_for('aviation_statistics') }}">Aviation</br>statistics</a></li>
+            <li><a href="{{ url_for('about') }}">About</br>this project</a></li>
+        </ul>
+        <div class="all_forms">
+            <div class="sky">
+                <div class="clouds"></div>
+                <div class="airplane">
+                    <img src="https://i.ibb.co/SPpRcJz/airplane.png">
+                    <div class="flame"></div>
+                    <div class="flame flame2"></div>
+                </div>
+                <div class="mountains"></div>
+            </div>
+            <div class="row_forms">
+                <div class="form1">
+                    <form method="POST" action="/calculator/">
+                        <dl>
+                            {{ form.csrf_token}}
+                            {{ wtf.form_field(form.plane_model) }}
+                            {{ wtf.form_field(form.plane_age)}}
+                            <div class="week">
+                                {{ wtf.form_field(form.monday)}}
+                                {{ wtf.form_field(form.tuesday)}}
+                                {{ wtf.form_field(form.wednesday)}}
+                                {{ wtf.form_field(form.thersday)}}
+                                {{ wtf.form_field(form.friday)}}
+                                {{ wtf.form_field(form.saturday)}}
+                                {{ wtf.form_field(form.sunday)}}
+                                {{ wtf.form_field(form.all_days)}}
+                            </div>
+                            {{ wtf.form_field(form.avarage_distance)}}
+                            {{ wtf.form_field(form.k)}}
+                            {{ wtf.form_field(form.avarage_cost_fuel)}}
+                            {{ wtf.form_field(form.avarage_cost_ticket)}}
+                        </dl>
+                    </form>
+                </div>
+                <div class="sliders">
+                    <div class="slider">
+                        <span class="slider_title">Дальность полета [км]:</span>
+                        <div class="slider_wrap">
+                            <span class="slider_text1" id="distance_min">0</span>
+                            <output id="relationship-status-output1" class="relationship-status-output color-default" disabled>0</output>
+                            <span class="slider_text2" id="distance_max">100</span>
+                        </div>
+                        <input type="range" class="relationship-status-slider" min="0" max="100" id="slider_1" disabled/>
+                    </div>
+                    <div class="slider">
+                        <span class="slider_title">Количество занятых пассажирами кресел:</span>
+                        <div class="slider_wrap">
+                            <span class="slider_text1" id="passangers_min">0</span>
+                            <output id="relationship-status-output2" class="relationship-status-output color-default" disabled>0</output>
+                            <span class="slider_text2" id="passangers_max">100</span>
+                        </div>
+                        <input type="range" class="relationship-status-slider" min="0" max="100" id="slider_2" disabled/>
+                    </div>
+                    <div class="slider">
+                        <span class="slider_title">Срок эксплуатации транспортного средства [годы]:</span>
+                        <div class="slider_wrap">
+                            <span class="slider_text1" id="age_min">0</span>
+                            <output id="relationship-status-output3" class="relationship-status-output color-default" disabled>0</output>
+                            <span class="slider_text2" id="age_max">100</span>
+                        </div>
+                        <input type="range" class="relationship-status-slider" min="0" max="100" id="slider_3" disabled/>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="btn_calculate">
+                    <input class="btn btn-primary" id="btn_calculate" value="Рассчитать">
+                </div>
+                <div class="btn_refresh">
+                    <input class="btn btn-primary" id="btn_refresh" value="Сбросить">
+                </div>
+            </div>
+            <div class="output">
+                <span class="output_head">Теоретические результаты деятельности рейса</span>
+                <div class="results">
+                    <span class="result_name">Самолет:</span>
+                    <span class="result_item" id="res1"></span>
+                    <span class="result_name">Кол-во выбросов СО2:</span>
+                    <span class="result_item" id="res2"></span>
+                    <span class="result_name">Кол-во затраченного топлива:</span>
+                    <span class="result_item" id="res3"></span>
+                    <span class="result_name">Стоимость топлива на сегодняшний день:</span>
+                    <span class="result_item" id="res4"></span>
+                    <span class="result_name">Предварительная выручка от продажи билетов на сегодняшний день:</span>
+                    <span class="result_item" id="res5"></span>
+                    <span class="result_name">Кол-во перевезенных пассажиров:</span>
+                    <span class="result_item" id="res6"></span>
+                    <span class="result_name">Кол-во пройденных рейсом километров:</span>
+                    <span class="result_item" id="res7"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <ul>
+            <li>Команда разработки:<br /><br />Прокофьева Екатерина<br />Некрасов Глеб<br />Поливода
+                Денис<br />Брагин Никита<br />Мальцев Максим<br />Осипов Александр<br />Геворков Иван<br />Беляков
+                Семен</li>
+            <div class="v33_18"></div>
+            <li>Котакты:</br></br>project530@miem.hse.ru</br>+7 (999) 888-77-66</li>
+            <div class="v33_19"></div>
+            <li>Обратная связь</br></br>Будем рады услышать предложения по улучшению сайта.<br />Наша почта:
+                project530@miem.hse.ru</li>
+        </ul>
+    </footer>
+</div>
+
+<script>
+                            
+    var plane_data, plane
+    let plane_select = document.getElementById('plane_model');
+    plane_data = 0;
+    plane_select.onchange = function() {
+        plane = plane_select.value;
+        fetch('/calculator/' + plane).then(function(response) {
+            response.json().then(function(data) {
+                console.log(data);
+                plane_data = data;
+            });
+        plane_age.disabled = false;
+        monday.disabled = false;
+        tuesday.disabled = false;
+        wednesday.disabled = false;
+        thersday.disabled = false;
+        friday.disabled = false;
+        saturday.disabled = false;
+        sunday.disabled = false;
+        all_days.disabled = false;
+        avarage_distance.disabled = false;
+        k.disabled = false;
+        avarage_cost_fuel.disabled = false;
+        avarage_cost_ticket.disabled = false;
+        });
+    };
+
+    document.addEventListener("DOMContentLoaded", function() {
+        plane_select.value = null;
+        plane_age.disabled = true;
+        monday.disabled = true;
+        tuesday.disabled = true;
+        wednesday.disabled = true;
+        thersday.disabled = true;
+        friday.disabled = true;
+        saturday.disabled = true;
+        sunday.disabled = true;
+        all_days.disabled = true;
+        avarage_distance.disabled = true;
+        k.disabled = true;
+        avarage_cost_fuel.disabled = true;
+        avarage_cost_ticket.disabled = true;
+    });
+
+    let plane_age = document.getElementById('plane_age');
+    plane_age.onchange = function () {
+        age = plane_age.value;
+        var int_age = parseInt(Object.values(plane_data)[0][6]);
+        if (age <= 0 || age > int_age) {
+            alert('Введите число больше 0 и меньше ' + (Object.values(plane_data)[0][6]));
+            plane_age.value = 1;
+        }
+    }
+
+    let avarage_distance = document.getElementById('avarage_distance');
+    avarage_distance.onchange = function () {
+        distance = avarage_distance.value;
+        int_distance = parseInt(Object.values(plane_data)[0][7]);
+        if (distance <= 0 || distance > int_distance) {
+            alert('Введите число больше 0 и меньше ' + (Object.values(plane_data)[0][7]));
+            avarage_distance.value = 1;
+        }
+    }
+    
+    let monday = document.getElementById('monday');
+    let tuesday = document.getElementById('tuesday');
+    let wednesday = document.getElementById('wednesday');
+    let thersday = document.getElementById('thersday');
+    let friday = document.getElementById('friday');
+    let saturday = document.getElementById('saturday');
+    let sunday = document.getElementById('sunday');
+    let all_days = document.getElementById('all_days');
+    all_days.onchange = function () {
+        if (all_days.checked == false) {
+            monday.checked = false;
+            tuesday.checked = false;
+            wednesday.checked = false;
+            thersday.checked = false;
+            friday.checked = false;
+            saturday.checked = false;
+            sunday.checked = false;
+        }
+        else {
+            monday.checked = true;
+            tuesday.checked = true;
+            wednesday.checked = true;
+            thersday.checked = true;
+            friday.checked = true;
+            saturday.checked = true;
+            sunday.checked = true;
+        };
+    }
+
+    let k = document.getElementById('k');
+    k.onchange = function () {
+        k_value = k.value;
+        if (k_value <= 0 || k_value > 100) {
+            alert('Введите коэффициент больше 0% и до 100%');
+            k.value = 1;
+        }
+    }
+
+    let avarage_cost_fuel = document.getElementById('avarage_cost_fuel');
+    let avarage_cost_ticket = document.getElementById('avarage_cost_ticket');
+    let btn_refresh = document.getElementById('btn_refresh');
+    btn_refresh.onclick = function () {
+        plane_select.value = null;
+        plane_age.value = null;
+        monday.checked = false;
+        tuesday.checked = false;
+        wednesday.checked = false;
+        thersday.checked = false;
+        friday.checked = false;
+        saturday.checked = false;
+        sunday.checked = false;
+        all_days.checked = false;
+        avarage_distance.value = null;
+        k.value = null;
+        avarage_cost_fuel.value = null;
+        avarage_cost_ticket.value = null;
+        document.getElementById('slider_1').disabled = true;
+        document.getElementById('slider_2').disabled = true;
+        document.getElementById('slider_3').disabled = true;
+        document.getElementById('slider_1').min = 0;
+        document.getElementById('slider_1').max = 100;
+        document.getElementById('slider_1').value = 50;
+        document.getElementById('slider_2').min = 0;
+        document.getElementById('slider_2').max = 100;
+        document.getElementById('slider_2').value = 50;
+        document.getElementById('slider_3').min = 0;
+        document.getElementById('slider_3').max = 100;
+        document.getElementById('slider_3').value = 50;
+        document.getElementById('relationship-status-output1').disabled = true;
+        document.getElementById('relationship-status-output2').disabled = true;
+        document.getElementById('relationship-status-output3').disabled = true;
+        document.getElementById('relationship-status-output1').innerHTML = 0;
+        document.getElementById('relationship-status-output2').innerHTML = 0;
+        document.getElementById('relationship-status-output3').innerHTML = 0;
+        document.getElementById('distance_max').innerHTML = 100;
+        document.getElementById('passangers_max').innerHTML = 100;
+        document.getElementById('age_max').innerHTML = 100;
+        document.getElementById('res1').innerHTML = null;
+        document.getElementById('res2').innerHTML = null;
+        document.getElementById('res3').innerHTML = null;
+        document.getElementById('res4').innerHTML = null;
+        document.getElementById('res5').innerHTML = null;
+        document.getElementById('res6').innerHTML = null;
+        document.getElementById('res7').innerHTML = null;
+        plane_age.disabled = true;
+        monday.disabled = true;
+        tuesday.disabled = true;
+        wednesday.disabled = true;
+        thersday.disabled = true;
+        friday.disabled = true;
+        saturday.disabled = true;
+        sunday.disabled = true;
+        all_days.disabled = true;
+        avarage_distance.disabled = true;
+        k.disabled = true;
+        avarage_cost_fuel.disabled = true;
+        avarage_cost_ticket.disabled = true;
+    }
+
+    let btn_calculate = document.getElementById('btn_calculate');
+    function calculation () {
+        if (plane_select.value == null) alert('Выберете модель самолета!');
+        else if (plane_age.value == null) alert('Введите срок эксплуатации самолета!');
+        else if (monday.checked == false && +
+            tuesday.checked == false && +
+            wednesday.checked == false && +
+            thersday.checked == false && +
+            friday.checked == false && +
+            saturday.checked == false && +
+            sunday.checked == false) alert('Выберете дни недели для полета!');
+        else if (avarage_distance.value == null) alert('Введите среднюю жистанцию полета!');
+        else if (k.value == null) alert('Введите средний коэффициент занятости пассажирокресел!');
+        else if (avarage_cost_fuel.value == null) alert('Введите среднбб стоимость керосина!');
+        else if (avarage_cost_ticket.value == null) alert('Введите среднюю стоимость билета!');
+        else {
+            min_bak = Object.values(plane_data)[0][9];
+            max_bak = Object.values(plane_data)[0][8];
+            max_com_waight = Object.values(plane_data)[0][5];
+            max_plane_waight = Object.values(plane_data)[0][4];
+            passangers = k.value;
+            days = 0;
+            if (all_days.checked == true) {
+                days = 7;
+            }
+            else {
+                if (monday.checked == true) days += 1;
+                if (tuesday.checked == true) days += 1;
+                if (wednesday.checked == true) days += 1;
+                if (thersday.checked == true) days += 1;
+                if (friday.checked == true) days += 1;
+                if (saturday.checked == true) days += 1;
+                if (sunday.checked == true) days += 1;
+            };
+
+            distance = avarage_distance.value * days * 52.1786 * plane_age.value;
+            max_distance = parseInt(Object.values(plane_data)[0][7])
+            CO2_min = ((315 * max_bak * (1 - ((max_com_waight * (1- (passangers/100))) / max_plane_waight))) / max_distance) * distance;
+            CO2_max = ((315 * min_bak * (1 - ((max_com_waight * (1- (passangers/100))) / max_plane_waight))) / max_distance) * distance;
+            fuel_min = CO2_min / 3.15;
+            fuel_max = CO2_max / 3.15;
+            fuel_cost_min = fuel_min * avarage_cost_fuel.value;
+            fuel_cost_max = fuel_max * avarage_cost_fuel.value;
+            all_passangers_min = days * 52.1786 * plane_age.value * parseInt(Object.values(plane_data)[0][3]) * passangers;
+            all_passangers_max = days * 52.1786 * plane_age.value * parseInt(Object.values(plane_data)[0][2]) * passangers;
+            income_min = avarage_cost_ticket.value * parseInt(Object.values(plane_data)[0][3]) * passangers * days * 52.1786 * plane_age.value;
+            income_max = avarage_cost_ticket.value * parseInt(Object.values(plane_data)[0][2]) * passangers * days * 52.1786 * plane_age.value;
+
+            let res1 = document.getElementById('res1');
+            let res2 = document.getElementById('res2');
+            let res3 = document.getElementById('res3');
+            let res4 = document.getElementById('res4');
+            let res5 = document.getElementById('res5');
+            let res6 = document.getElementById('res6');
+            let res7 = document.getElementById('res7');
+
+            res1.innerHTML = Object.keys(plane_data);
+            res2.innerHTML = "от " + Math.round(CO2_min) + " кг, до " + Math.round(CO2_max) + " кг";
+            res3.innerHTML = "от " + Math.round(fuel_min) + " кг , до " + Math.round(fuel_max) + " кг";
+            res4.innerHTML = "от " + Math.round(fuel_cost_min) + " рублей , до " + Math.round(fuel_cost_max) + " рублей";
+            res5.innerHTML = "от " + Math.round(income_min) + " рублей , до " + Math.round(income_max) + " рублей";
+            res6.innerHTML = "от " + Math.round(all_passangers_min) + " человек, до " + Math.round(all_passangers_max) + " человек";
+            res7.innerHTML = Math.round(distance) + " км";
+
+            document.getElementById('slider_1').disabled = false;
+            document.getElementById('slider_2').disabled = false;
+            document.getElementById('slider_3').disabled = false;
+            document.getElementById('relationship-status-output1').disabled = false;
+            document.getElementById('relationship-status-output2').disabled = false;
+            document.getElementById('relationship-status-output3').disabled = false;
+            
+
+            document.getElementById('distance_min').innerHTML = 1;
+            document.getElementById('distance_max').innerHTML = Object.values(plane_data)[0][7];
+            document.getElementById('passangers_min').innerHTML = 1;
+            document.getElementById('passangers_max').innerHTML = Object.values(plane_data)[0][2];
+            document.getElementById('age_min').innerHTML = 1;
+            document.getElementById('age_max').innerHTML = Object.values(plane_data)[0][6];
+
+            document.getElementById("slider_1").min = 1;
+            document.getElementById("slider_1").max = Object.values(plane_data)[0][7];
+            document.getElementById("slider_1").value = avarage_distance.value;
+            document.getElementById("slider_2").min = 1;
+            document.getElementById("slider_2").max = Object.values(plane_data)[0][2];
+            document.getElementById("slider_2").value = Math.round(k.value / 100 * Object.values(plane_data)[0][2]);
+            document.getElementById("slider_3").min = 1;
+            document.getElementById("slider_3").max = Object.values(plane_data)[0][6];
+            document.getElementById("slider_3").value = plane_age.value;
+        }
+    }
+    btn_calculate.onclick = calculation;
+
+    let range_distance = document.getElementById('slider_1');
+    range_distance.oninput = function range_distance_calculation() {
+        let cur_distance = document.getElementById('avarage_distance');
+        cur_distance.value = range_distance.value;
+        document.getElementById('relationship-status-output1').innerHTML = range_distance.value;
+        calculation();
+    }
+
+    let range_passangers = document.getElementById('slider_2');
+    range_passangers.oninput = function range_distance_calculation() {
+        let cur_passangers = document.getElementById('k');
+        cur_passangers.value = Math.round(range_passangers.value / range_passangers.max * 100);
+        document.getElementById('relationship-status-output2').innerHTML = range_passangers.value;
+        calculation();
+    }
+
+    let range_age = document.getElementById('slider_3');
+    range_age.oninput = function range_distance_calculation() {
+        let cur_age = document.getElementById('plane_age');
+        cur_age.value = range_age.value;
+        document.getElementById('relationship-status-output3').innerHTML = range_age.value;
+        calculation();
+    }
+
+</script>
+{% endblock %}
+
